@@ -1,6 +1,8 @@
 {
     "name": "purplecommerce/attachment",
     "description": "A module which allow to add attachment and display them through widget",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "keywords": [
         "magento 2",
         "magento",
