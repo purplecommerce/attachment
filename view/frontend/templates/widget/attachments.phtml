@@ -1,0 +1,26 @@
+<!-- <p>This is sample widget. Perform your code here.</p> -->
+<?php 
+	$helper = $this->helper('PurpleCommerce\Attachment\Helper\Data');
+	$values = $helper->isModuleEnabled();
+	
+	if($values==1){
+		$attachmentid=$block->getData('entity_id');
+		$attachments = $block->getAttachment($attachmentid);
+		$customerGroup = $block->getCustomerInfo();
+		$visibleto = explode(',',$attachments[0]['visible_to']);
+		$ext = pathinfo($attachments[0]['icon'],PATHINFO_EXTENSION);
+		if(in_array($customerGroup,$visibleto)){
+			// attachment_icons/icons8-image.png;icons8-microsoft-word.png;
+			$url = $block->getFileIcon($ext);
+			if($block->getData('entity_id')): ?>
+				<a target='_blank' href="pub/media/attachment?id=<?php echo $attachments[0]['file_name'];?>"><img src='<?php echo $url;?>' alt='<?php echo $attachments[0]['file_label']; ?>' width="50" /></a>
+				<p class='attach-name'><a target='_blank' href="pub/media/attachment?id=<?php echo $attachments[0]['file_name'];?>"><?php echo $attachments[0]['file_label']; ?></a></p>
+				<!-- <p class='attach-file'>File: <a target='_blank' href="pub/media/attachment?id=<?php //echo $attachments[0]['file_name'];?>">Open Attachment</a></p>
+				<p class='attach-type'>Type: <?php //echo $attachments[0]['attachment_type']; ?></p>
+				<p class='attach-visible'>Visible To: <?php //echo $attachments[0]['visible_to']; ?></p> -->
+<?php 	
+			endif;
+		} 
+
+	}
+?>

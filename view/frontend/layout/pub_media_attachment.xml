@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="empty" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<head>
+</head>
+    <referenceContainer name="content">
+        <block class="PurpleCommerce\Attachment\Block\Index" name="pub_media_attachment" template="PurpleCommerce_Attachment::attachment/index.phtml" cacheable="false"/>
+    </referenceContainer>
+    <!-- <referenceContainer name="header.container" remove="true" /> 
+     <referenceContainer name="footer.container" remove="true" />  -->
+    <referenceContainer name="footer" remove="true" /> 
+    <referenceContainer name="mp.list.subscriber" remove="true" />
+</page>

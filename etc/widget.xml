@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:helloworld:Magento_Widget:etc/widget.xsd">
+	<widget class="PurpleCommerce\Attachment\Block\Widget\Attachment" id="pc_attachment">
+		<label>Attachment</label>
+		<description>Attachment Module</description>
+		<!-- <parameters>
+			<parameter name="attach" sort_order="10" visible="true" xsi:type="text">
+				<label>testing</label>
+			</parameter>
+		</parameters> -->
+		<parameters>
+			<parameter name="entity_id" xsi:type="block" visible="true" required="true" sort_order="20">
+                <label translate="true">Attachment</label>
+                <block class="PurpleCommerce\Attachment\Block\Adminhtml\Block\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Select Attachment...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            <parameter name="template" xsi:type="select" visible="true" required="true" sort_order="10">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="widget/attachments.phtml" selected="true">
+                        <label translate="true">Attachment Default Template</label>
+                    </option>
+                </options>
+            </parameter>
+		</parameters>
+	</widget>
+</widgets>
