@@ -117,7 +117,7 @@ class Attachment extends \Magento\Framework\Model\AbstractModel implements Attac
      */
     public function getFileLabel()
     {
-        return $this->getData(self::FILE_Label);
+        return $this->getData(self::FILE_LABEL);
     }
 
     /**
@@ -125,7 +125,7 @@ class Attachment extends \Magento\Framework\Model\AbstractModel implements Attac
      */
     public function setFileLabel($fileLabel)
     {
-        return $this->setData(self::FILE_Label, $fileLabel);
+        return $this->setData(self::FILE_LABEL, $fileLabel);
     }
 
     /**
