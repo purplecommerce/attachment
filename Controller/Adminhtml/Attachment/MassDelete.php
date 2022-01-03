@@ -26,11 +26,13 @@ class MassDelete extends \Magento\Backend\App\Action
      */
     public function __construct(
         Context $context,
+        \Magento\Framework\Filesystem\Driver\File $file,
         Filter $filter,
         CollectionFactory $collectionFactory
     ) {
         $this->collectionFactory = $collectionFactory;
         $this->filter = $filter;
+        $this->_file = $file;
         parent::__construct($context);
     }
 
@@ -43,8 +45,20 @@ class MassDelete extends \Magento\Backend\App\Action
     {
         $collection = $this->filter->getCollection($this->collectionFactory->create());
         $collectionSize  = $collection->getSize();
-        foreach($collection as $store){
-            $store->delete();
+        $mediaDirectory = $this->_objectManager->get('Magento\Framework\Filesystem')
+        ->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA);
+        $mediaRootDir = $mediaDirectory->getAbsolutePath();
+
+        
+        foreach($collection as $attachment){
+            $url=$attachment->getData('icon');
+            $dir = dirname($url);
+            $subdir = substr($dir, strpos($dir, 'attachment')+10);
+            $fileName = basename($url);
+            if ($this->_file->isExists($mediaRootDir."/attachment".$subdir.'/'.$fileName))  {
+                $this->_file->deleteFile($mediaRootDir."/attachment".$subdir.'/'.$fileName);
+            }
+            $attachment->delete();
         }
         $this->messageManager->addSuccess(__('Total of %1 record(s) were deleted.', $collectionSize));
 
